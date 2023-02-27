@@ -1,0 +1,17 @@
+mongodb
+mongoose
+
+API --> Applicaiton programming interfacce....
+
+soap
+rest web service --> json
+
+GET request -->
+POST ---> create
+DELETE -->
+PUT ---> update
+patch ---> update
+
+testing tools -postman
+
+HTTP STATUS ---> series 1 ,2 3 4 5
