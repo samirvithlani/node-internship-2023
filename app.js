@@ -1,76 +1,52 @@
 const express = require('express')
-const mongoose = require('mongoose')
-//created and initialized express app
 const app = express()
+const mongoose = require('mongoose')
 const PORT = 3000
+const userSchema = require('./schema/UserSchema')
+const EmployeeSchema = require('./schema/EmployeeSchema')
 
 
-// mongoose.connect("url",{options},(err)=>{})
-var user={
-    name:"raj",
-    email:"raj@gmail.com",
-    age:25
-}
-var employees =[
-    {
-        id:101,
-        name:"amit",
-        salary:25600
-    },
-    {
-        id:102,
-        name:"raj",
-        salary:12000
-    }
-]
-
-
-app.get('/demo',(req,res)=>{
-    
-})
-app.get('/employee',(req,res)=>{
-
-
-    res.status(200).json({
-        data:employees,
-        message:"employee data"
-    })
-
-})
 
 app.get('/user',(req,res)=>{
 
-    res.status(200).json({
-        data:user,
-        message:"user data"
 
+    userSchema.find((err,data)=>{
+        if(err){
+            res.status(404).json({
+                message:"Data not found..."
+            })
+        }
+        else{
+            res.status(200).json({
+                data:data,
+                message:"Data found..."
+            })
+        }
     })
+
 
 })
 
-app.get('/test',(req,res)=>{
 
-    //res.send("test.....")
 
-    res.status(201).json({
-        message:"Hello"
-    })
-
-})
-
-//mongoose.connect("url",{options},(err)=>{})
 mongoose.connect("mongodb://127.0.0.1:27017/pms_node",{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
+    
 },(err)=>{
     if(err){
-        console.log("not connected to db")
+        console.log("error while conecting db....")
     }
     else{
-        console.log("db connected...")
+        console.log("database connected...")
     }
 })
 
+
+
+
+
 app.listen(PORT,()=>{
-    console.log('server started on port',PORT)
+    console.log("server is running on port" , PORT)
 })
+
+
+
