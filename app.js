@@ -1,52 +1,25 @@
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
-const PORT = 3000
-const userSchema = require('./schema/UserSchema')
-const EmployeeSchema = require('./schema/EmployeeSchema')
+const app = express()
+app.use(express.json())
+
+const userRoutes = require('./routes/UserRoutes')
+const employeeRoutes = require('./routes/EmployeeRoutes')
+//we have to use userRoutes in app.js
+app.use('/user',userRoutes)
+app.use('/employee',employeeRoutes)
 
 
-
-app.get('/user',(req,res)=>{
-
-
-    userSchema.find((err,data)=>{
-        if(err){
-            res.status(404).json({
-                message:"Data not found..."
-            })
-        }
-        else{
-            res.status(200).json({
-                data:data,
-                message:"Data found..."
-            })
-        }
-    })
-
-
-})
-
-
-
-mongoose.connect("mongodb://127.0.0.1:27017/pms_node",{
-    
-},(err)=>{
+mongoose.connect("mongodb://127.0.0.1:27017/pms_node",{},(err)=>{
     if(err){
-        console.log("error while conecting db....")
+        console.log("error in db connections....")
     }
     else{
-        console.log("database connected...")
+        console.log("db connected....")
     }
 })
 
-
-
-
-
+const PORT = 3000
 app.listen(PORT,()=>{
-    console.log("server is running on port" , PORT)
+    console.log(`Server is running on port ${PORT}`)
 })
-
-
-
