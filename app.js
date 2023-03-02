@@ -5,9 +5,11 @@ app.use(express.json())
 
 const userRoutes = require('./routes/UserRoutes')
 const employeeRoutes = require('./routes/EmployeeRoutes')
+const productRoutes = require('./routes/ProductRoutes')
 //we have to use userRoutes in app.js
 app.use('/user',userRoutes)
 app.use('/employee',employeeRoutes)
+app.use('/product',productRoutes)
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/pms_node",{},(err)=>{
