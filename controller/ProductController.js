@@ -1,5 +1,38 @@
 const productSchema = require('../schema/ProductSchema')
 
+const getProductsWithCat = (req,res)=>{
+
+
+    productSchema.find().populate('category').exec((err,products)=>{
+        if(err){
+            res.status(500).json({
+                message:"Error in getting products",
+                err:err
+            })
+        }
+        else{
+            if(products!=null || products!=undefined || products.length!=0){
+                res.status(200).json({
+                    message:"Products fetched successfully",
+                    products:products
+                })
+            }
+            else{
+                res.status(404).json({
+                    message:"Products not found",
+                })
+            }
+
+        }
+
+    })
+
+
+
+
+}
+
+
 
 const updateProduct = (req,res)=>{
 
@@ -166,5 +199,6 @@ module.exports ={
     getAllProducts,
     getProductById,
     deleteProducts,
-    updateProduct
+    updateProduct,
+    getProductsWithCat
 }

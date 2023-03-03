@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 const ProductSchema = new Schema(
 {
-
     name:{
         type:String,
         required:true
@@ -14,6 +13,11 @@ const ProductSchema = new Schema(
     },
     qty:{
         type:Number,
+    },
+    //property
+    category:{
+        type:Schema.Types.ObjectId,
+        ref:'category'
     }
 },{
     timestamps:true
