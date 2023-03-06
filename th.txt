@@ -15,3 +15,8 @@ patch ---> update
 testing tools -postman
 
 HTTP STATUS ---> series 1 ,2 3 4 5
+
+
+task:
+
+pass userid and fetch that user cart detail

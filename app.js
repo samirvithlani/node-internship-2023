@@ -8,12 +8,14 @@ const employeeRoutes = require('./routes/EmployeeRoutes')
 const productRoutes = require('./routes/ProductRoutes')
 const categoryRoutes = require('./routes/CategoryRoutes')
 const roleRoutes = require('./routes/RoleRoutes')
+const cartRoutes = require('./routes/CartRoutes')
 //we have to use userRoutes in app.js
 app.use('/user',userRoutes)
 app.use('/employee',employeeRoutes)
 app.use('/product',productRoutes)
 app.use('/category',categoryRoutes)
 app.use('/role',roleRoutes)
+app.use('/cart',cartRoutes)
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/pms_node",{},(err)=>{
