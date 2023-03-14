@@ -97,7 +97,7 @@ const loginUser = (req,res)=>{
     var password = req.body.password
 
     if(email!=undefined && password!= undefined && email!= "" && password!=""){
-        userSchema.find({email:email,password:password},(err,data)=>{
+        userSchema.find({email:email,password:password}).populate('role').exec((err,data)=>{
 
             if(err){
                 res.status(500).json({
