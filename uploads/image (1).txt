@@ -1,0 +1,15 @@
+The term portfolio management in common practice refers to selection of securities
+and their continuous shifting in a way that the holder gets maximum returns at minimum
+possible risk. Portfolio management services are merchant banking activities recognized
+by SEBI and these activities can be rendered by SEBI authorized portfolio managers or
+
+discretionary portfolio managers.
+
+A portfolio manager by the virtue of his knowledge, background and experience helps
+his clients to make investment in profitable avenues. A portfolio manager has to comply
+
+with the provisions of the SEBI (portfolio managers) rules and regulations, 1993.
+
+This project also includes the different services rendered by the portfolio manager. It
+includes the functions to be performed by the portfolio manager.
+

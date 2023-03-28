@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const FileUploadSchema = new Schema({
+    userName:{
+        type: String,
+    },
     name: {
         type: String,
         required: true

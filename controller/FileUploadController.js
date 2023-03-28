@@ -52,7 +52,8 @@ const uploadFile = (req, res) => {
                     name: req.file.originalname,
                     size: req.file.size,
                     url:p,
-                    type: req.file.mimetype
+                    type: req.file.mimetype,
+                    userName: req.body.userName
                 })
                 fileUpload.save((err,data)=>{
                     if(err){
