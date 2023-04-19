@@ -1,9 +1,10 @@
 const path = require('path');
 const multer = require('multer');
 const FileUpload = require('../schema/FileUploadSchema');
+const googleUploadController = require('../controller/GoogleUploadController');
 
 const storage = multer.diskStorage({
-    destination: "./uploads/",
+    // destination: "./uploads/",
     filename: function(req, file, cb){
         cb(null,file.originalname);
     }
@@ -18,10 +19,10 @@ const upload = multer(
     }
 ).single('file');
 
-const uploadFile = (req, res) => {
+const uploadFile = async(req, res) => {
 
     console.log(req.file);
-    upload(req,res,(err)=>{
+    upload(req,res,async(err)=>{
         if(err){
             res.status(500).json({
                 error: err,
@@ -48,12 +49,16 @@ const uploadFile = (req, res) => {
             }
             else{
 
+                var x =  await googleUploadController.uploadFile(req.file.path);
+                console.log(x);
+
                 const fileUpload = new FileUpload({
                     name: req.file.originalname,
                     size: req.file.size,
                     url:p,
                     type: req.file.mimetype,
-                    userName: req.body.userName
+                    userName: req.body.userName,
+                    gdriveId :x
                 })
                 fileUpload.save((err,data)=>{
                     if(err){

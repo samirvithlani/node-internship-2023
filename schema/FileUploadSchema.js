@@ -17,6 +17,9 @@ const FileUploadSchema = new Schema({
     },
     type:{
         type: String,
+    },
+    gdriveId:{
+        type: String,
     }
 },{
     timestamps: true
