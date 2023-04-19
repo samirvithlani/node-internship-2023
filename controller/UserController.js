@@ -1,6 +1,7 @@
 const userSchema = require('../schema/UserSchema');
 const encrypt = require('../util/encrypt');
 
+const mailer = require('../util/mailer')
 
 //login with encryption
 const loginUser1 = async(req,res)=>{
@@ -58,17 +59,33 @@ const registerUser = async(req,res)=>{
     }
 
     const user = new userSchema(userData)
-    user.save((err,data)=>{
+    user.save(async(err,data)=>{
         if(err){
             res.status(500).json({
                 message:"error in adding user",
             })
         }
         else{
-            res.status(201).json({
-                message:"user added successfully",
-                data:data
-            })
+
+           const mailres =await mailer.sendMail(req.body.email,"Welcome to our website","Welcome to our website")
+            console.log(mailres)
+            if(mailres){
+                res.status(201).json({
+                    message:"user added successfully",
+                    data:data
+                })
+            }
+            else{
+                res.status(500).json({
+                    message:"error in sending mail",
+                })
+            }
+            
+
+            // res.status(201).json({
+            //     message:"user added successfully",
+            //     data:data
+            // })
         }
 
     })
