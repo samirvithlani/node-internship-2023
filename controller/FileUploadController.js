@@ -87,7 +87,37 @@ const uploadFile = async(req, res) => {
     })
 
 }
+
+const getFilesFromGoogle = async(req,res)=>{
+
+
+    var x = await googleUploadController.getAllFileFromGoogleDrive();
+    console.log(x);
+    res.status(200).json({
+        files:x 
+    })
+
+
+
+}
+const getFilesFromDb = async(req,res)=>{
+    FileUpload.find((err,files)=>{
+        if(err){
+            res.status(500).json({
+                error: err,
+                message: 'Error getting files from db'
+            })
+        }
+        else{
+            res.status(200).json({
+                files: files
+            })
+        }
+    })
+}
 module.exports = {
-    uploadFile
+    uploadFile,
+    getFilesFromGoogle,
+    getFilesFromDb
 }
 

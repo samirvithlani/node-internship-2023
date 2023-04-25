@@ -8,5 +8,6 @@ router.get('/productc',productController.getProductsWithCat)
 router.get('/product/:id',productController.getProductById)
 router.delete('/product/:id',productController.deleteProducts)
 router.put('/product/:id',productController.updateProduct)
+router.get('/search/:query',productController.searchProduct)
 
 module.exports = router

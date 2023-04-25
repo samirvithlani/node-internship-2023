@@ -67,8 +67,8 @@ const registerUser = async(req,res)=>{
         }
         else{
 
-           const mailres =await mailer.sendMail(req.body.email,"Welcome to our website","Welcome to our website")
-            console.log(mailres)
+           //const mailres =await mailer.sendMail(req.body.email,"Welcome to our website","Welcome to our website")
+            //console.log(mailres)
             if(mailres){
                 res.status(201).json({
                     message:"user added successfully",
